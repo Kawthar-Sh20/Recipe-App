@@ -1,10 +1,10 @@
 import { Link } from "react-router-dom";
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./AllRecipe.css"; // Import the CSS file
 import NavBar from "../navBar/nav";
 import jsPDF from "jspdf";
-// import "jspdf-autotable";
+import { gsap } from "gsap";
 
 const AllRecipe = () => {
   const [recipes, setRecipes] = useState([]);
@@ -14,6 +14,7 @@ const AllRecipe = () => {
   const [comment, setComment] = useState("");
   const [starValue, setStarValue] = useState(0);
   const [userId, setUserId] = useState(10); // Replace with actual user ID
+  const recipeRefs = useRef([]); // Ref to store references to recipe items
 
   useEffect(() => {
     const fetchRecipes = async () => {
@@ -32,6 +33,16 @@ const AllRecipe = () => {
 
     fetchRecipes();
   }, []);
+
+  useEffect(() => {
+    // Animate recipe items on load
+    gsap.from(recipeRefs.current, {
+      opacity: 0,
+      y: 50,
+      stagger: 0.1,
+      duration: 0.5,
+    });
+  }, [recipes]);
 
   const parseIngredients = (ingredients) => {
     try {
@@ -53,6 +64,12 @@ const AllRecipe = () => {
 
   const toggleRecipe = (id) => {
     setSelectedRecipe(selectedRecipe === id ? null : id);
+    // Animate recipe details on toggle
+    gsap.fromTo(
+      recipeRefs.current[id],
+      { height: 0, opacity: 0 },
+      { height: "auto", opacity: 1, duration: 0.5 }
+    );
   };
 
   const handleCommentChange = (e) => {
@@ -193,17 +210,18 @@ const AllRecipe = () => {
       <h1>All Recipes</h1>
       <div className="recipe-list">
         {Array.isArray(recipes) && recipes.length > 0 ? (
-          recipes.map((recipe) => (
+          recipes.map((recipe, index) => (
             <div
               key={recipe.recipe_id}
               className={`recipe-item ${
                 selectedRecipe === recipe.recipe_id ? "selected" : ""
               }`}
               onClick={() => toggleRecipe(recipe.recipe_id)}
+              ref={(el) => (recipeRefs.current[recipe.recipe_id] = el)}
             >
               <h2>{recipe.recipe_name}</h2>
               {selectedRecipe === recipe.recipe_id && (
-                <div>
+                <div className="recipe-details">
                   <h3>Ingredients:</h3>
                   <ul>
                     {parseIngredients(recipe.ingredients).map(
