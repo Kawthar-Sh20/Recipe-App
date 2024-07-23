@@ -33,7 +33,6 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 } else {
     echo json_encode(["error" => "Wrong request method"]);
 }
-?>
 
 
 
@@ -44,18 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
+//////////////////////////
 
 
 
@@ -90,3 +78,26 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 // } else {
 //     echo json_encode(["error" => "Wrong request method"]);
 // }
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
