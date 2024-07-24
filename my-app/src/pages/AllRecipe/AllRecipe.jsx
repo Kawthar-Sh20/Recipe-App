@@ -38,7 +38,7 @@ const AllRecipe = () => {
     // Animate recipe items on load
     gsap.from(recipeRefs.current, {
       opacity: 0,
-      y: 50,
+      scale: 0.8,
       stagger: 0.1,
       duration: 0.5,
     });
@@ -67,8 +67,8 @@ const AllRecipe = () => {
     // Animate recipe details on toggle
     gsap.fromTo(
       recipeRefs.current[id],
-      { height: 0, opacity: 0 },
-      { height: "auto", opacity: 1, duration: 0.5 }
+      { opacity: 0, scale: 0.8 },
+      { opacity: 1, scale: 1, duration: 0.5 }
     );
   };
 
