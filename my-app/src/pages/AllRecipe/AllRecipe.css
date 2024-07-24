@@ -1,63 +1,83 @@
-.container {
+body {
+  display: block;
+}
+
+.custom-navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+}
+
+/* Add padding-top to the container to avoid overlap with the fixed navbar */
+.custom-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100%;
   padding: 20px;
+  padding-top: 80px; /* Adjust this value based on your navbar height */
   background-color: #f8f8f8;
 }
 
-.recipe-list {
+.custom-recipe-list {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center; /* Center the items horizontally */
   gap: 20px;
+  width: 100%; /* Ensure the list takes the full width */
 }
 
-.recipe-item {
-  background-color: #ffffff; /* Ensure the background is solid white */
-  border: 1px solid #ccc; /* Add a border to make it more visible */
+.custom-recipe-item {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
   border-radius: 8px;
   padding: 20px;
-  width: calc(33.333% - 20px);
+  width: calc(50% - 20px); /* Two items per row */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  max-width: 450px; /* Optional: to limit the maximum width of each item */
 }
 
-.recipe-item:hover {
+.custom-recipe-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
 }
 
-.recipe-item h2 {
+.custom-recipe-item h2 {
   margin-bottom: 10px;
   font-size: 20px;
   color: #333;
 }
 
-.recipe-details {
+.custom-recipe-details {
   margin-top: 20px;
 }
 
-.recipe-details h3 {
+.custom-recipe-details h3 {
   font-size: 18px;
   color: #007bff;
   margin-bottom: 10px;
 }
 
-.recipe-details ul,
-.recipe-details ol {
+.custom-recipe-details ul,
+.custom-recipe-details ol {
   padding-left: 20px;
 }
 
-.recipe-details li {
+.custom-recipe-details li {
   margin-bottom: 5px;
 }
 
-.comment-section,
-.star-section,
-.pdf-section {
+.custom-comment-section,
+.custom-star-section,
+.custom-pdf-section {
   margin-top: 20px;
 }
 
-button {
+.custom-button {
   padding: 10px 20px;
   border: none;
   border-radius: 4px;
@@ -68,13 +88,13 @@ button {
   transition: background-color 0.3s ease;
 }
 
-button:hover {
+.custom-button:hover {
   background-color: #e59400;
 }
 
-.loading,
-.error,
-.no-recipes {
+.custom-loading,
+.custom-error,
+.custom-no-recipes {
   font-size: 18px;
   color: #333;
   text-align: center;

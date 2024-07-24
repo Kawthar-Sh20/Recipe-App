@@ -1,10 +1,11 @@
+
 import React, { useState } from "react";
 import "./register.css";
 import axios from "axios";
-
 import { Link, useNavigate } from "react-router-dom";
+
 const Register = () => {
-  const navigate =useNavigate();
+  const navigate = useNavigate();
   const [username1, setUsername] = useState("");
   const [email1, setEmail] = useState("");
   const [password1, setPassword] = useState("");
@@ -39,7 +40,7 @@ const Register = () => {
       console.log(username1, email1, password1);
 
       if (response.data) {
-        // Handle sudatccessful registration
+        // Handle successful registration
         console.log("Registration successful:", response);
         navigate("/home");
       } else {

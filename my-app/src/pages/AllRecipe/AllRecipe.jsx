@@ -1,10 +1,10 @@
+import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import React, { useEffect, useState, useRef } from "react";
-import "./AllRecipe.css"; // Import the CSS file
 import NavBar from "../navBar/nav";
 import jsPDF from "jspdf";
 import { gsap } from "gsap";
+import "./AllRecipe.css";
 
 const AllRecipe = () => {
   const [recipes, setRecipes] = useState([]);
@@ -166,7 +166,7 @@ const AllRecipe = () => {
     const ingredients = parseIngredients(recipe.ingredients);
     ingredients.forEach((ingredient) => {
       const lines = doc.splitTextToSize(
-        `- ${ingredient.ingredient}: ${ingredient.quantity}`,
+        - `${ingredient.ingredient}: ${ingredient.quantity}`,
         maxLineWidth
       );
       lines.forEach((line) => {
@@ -197,23 +197,25 @@ const AllRecipe = () => {
       });
     });
 
-    doc.save(`${recipe.recipe_name}.pdf`);
+    doc.save(`${recipe.recipe_name}`.pdf);
   };
 
-  if (loading) return <p className="loading">Loading...</p>;
+  if (loading) return <p className="custom-loading">Loading...</p>;
   if (error)
-    return <p className="error">Error loading recipes: {error.message}</p>;
+    return (
+      <p className="custom-error">Error loading recipes: {error.message}</p>
+    );
 
   return (
-    <div className="container">
-      <NavBar />
+    <div className="custom-container">
+      <NavBar className="custom-navbar" />
       <h1>All Recipes</h1>
-      <div className="recipe-list">
+      <div className="custom-recipe-list">
         {Array.isArray(recipes) && recipes.length > 0 ? (
           recipes.map((recipe, index) => (
             <div
               key={recipe.recipe_id}
-              className={`recipe-item ${
+              className={`custom-recipe-item ${
                 selectedRecipe === recipe.recipe_id ? "selected" : ""
               }`}
               onClick={() => toggleRecipe(recipe.recipe_id)}
@@ -221,7 +223,7 @@ const AllRecipe = () => {
             >
               <h2>{recipe.recipe_name}</h2>
               {selectedRecipe === recipe.recipe_id && (
-                <div className="recipe-details">
+                <div className="custom-recipe-details">
                   <h3>Ingredients:</h3>
                   <ul>
                     {parseIngredients(recipe.ingredients).map(
@@ -238,7 +240,7 @@ const AllRecipe = () => {
                       <li key={index}>{step}</li>
                     ))}
                   </ol>
-                  <div className="comment-section">
+                  <div className="custom-comment-section">
                     <h3>Add a Comment:</h3>
                     <textarea
                       value={comment}
@@ -251,7 +253,7 @@ const AllRecipe = () => {
                       Submit Comment
                     </button>
                   </div>
-                  <div className="star-section">
+                  <div className="custom-star-section">
                     <h3>Rate this Recipe:</h3>
                     <input
                       type="number"
@@ -263,7 +265,7 @@ const AllRecipe = () => {
                       Submit Star
                     </button>
                   </div>
-                  <div className="pdf-section">
+                  <div className="custom-pdf-section">
                     <button onClick={() => downloadPDF(recipe)}>
                       Download as PDF
                     </button>
@@ -273,7 +275,7 @@ const AllRecipe = () => {
             </div>
           ))
         ) : (
-          <p className="no-recipes">No recipes found</p>
+          <p className="custom-no-recipes">No recipes found</p>
         )}
       </div>
     </div>

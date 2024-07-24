@@ -10,6 +10,7 @@ html {
 .create-recipe-container {
   padding: 20px;
   padding-top: 70px; /* Adjust this value based on the navbar height */
+  margin-top: 70px;
 }
 
 .create-recipe-form {
@@ -81,12 +82,12 @@ button[type="button"] {
 }
 
 button[type="submit"] {
-  background-color: #007bff;
+  background-color: #ffcc00;
   color: white;
 }
 
 button[type="submit"]:hover {
-  background-color: #0056b3;
+  background-color: #ffe062;
 }
 
 p {

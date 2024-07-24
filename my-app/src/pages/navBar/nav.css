@@ -1,3 +1,6 @@
+
+
+
 /* navbar.css */
 
 .navbar {
@@ -33,6 +36,9 @@
 
 .navbar-links li {
   margin: 0 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .navbar-links a {
@@ -44,15 +50,21 @@
 .search-bar {
   display: flex;
   align-items: center;
+  justify-content: center;
+  margin-right: 20px;
 }
 
 .search-bar input {
+  margin-top: 7px;
   padding: 5px 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
   margin-right: 10px;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
 .search-bar button {
   background-color: #ff9900;
   border: none;
